@@ -8,6 +8,7 @@ export default function Card({data, gameOver, changeOrder}){
             setClicked(true)
         }else{
             gameOver()
+            setClicked(null)
         }
     }
     return (
