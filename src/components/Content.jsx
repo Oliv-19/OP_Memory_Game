@@ -12,7 +12,7 @@ async function getApi(cardsAmount){
     return data.photos
 
 }
-export default function Content({cardsAmount}){
+export default function Content({cardsAmount,score, setScore, setBestScore}){
     const [apiData, setApiData] = useState(null)
     useEffect(() => {
         if(apiData == null){
@@ -34,6 +34,7 @@ export default function Content({cardsAmount}){
 
     const gameOver = ()=>{
         console.log('gameOver')
+        setBestScore(prevData=> score > prevData ?? score)
     }
 
     const changeOrder = ()=>{
@@ -42,6 +43,7 @@ export default function Content({cardsAmount}){
             return Math.random() -0.5
         })
         setApiData(newOrderedData)
+        setScore(prevData=> prevData+1)
     }
     return (
         <main >
