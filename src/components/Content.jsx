@@ -1,6 +1,6 @@
 import { useEffect, useState} from "react"
 import Card from "./Card"
-//import data from "./data";
+import data from "./data";
 async function getApi(cardsAmount){
         const apiKey = 'Xj0403G2dn9CFvk7n0Ddz9AUGqfixqxUI89bUrk6Q39kIsJSVFmV0PHU'
         const response = await fetch(`https://api.pexels.com/v1/search?query=flowers&per_page=${cardsAmount}&orientation=square`, {
@@ -18,7 +18,7 @@ export default function Content({cardsAmount}){
         if(apiData == null){
             const fetchData = async ()=>{
             try{
-                const data = await getApi(cardsAmount)
+                //const data = await getApi(cardsAmount)
                 console.log(data)
                 setApiData(data)
                 

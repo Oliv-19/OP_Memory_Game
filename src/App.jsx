@@ -4,7 +4,15 @@ import Content from './components/Content'
 
 export default function App() {
   return (
-    <Content cardsAmount={10}/>
+    <>
+      <nav>
+        <h1>Memory Game</h1>
+        <h3>Score: {} </h3>
+        <h4>Best score: {} </h4>
+        <button type='button'> Difficulty</button>
+      </nav>
+      <Content cardsAmount={10}/>
+    </>
   )
 }
 
