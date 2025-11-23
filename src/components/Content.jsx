@@ -65,7 +65,8 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
         <main >
         {apiData?(
             <>
-                <Dialog isOpen={isDialogOpen} onClose={closeDialog} >
+                <Dialog isOpen={isDialogOpen} onClose={closeDialog}  >
+                    <h1>You Lost!</h1>
                     <button onClick={playAgain}>Play Again</button>
                 </Dialog>
                 {apiData.map((data)=> 

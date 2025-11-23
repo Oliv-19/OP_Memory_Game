@@ -14,8 +14,11 @@ export default function Dialog({children, isOpen, onClose}){
     }, [isOpen]);
 
     return (
-        <dialog open={isOpen} onCancel={onClose}>
-            {children}
+        <dialog ref={dialogRef} onCancel={onClose}>
+            <div>
+                {children}
+
+            </div>
         </dialog>
     )
 }
