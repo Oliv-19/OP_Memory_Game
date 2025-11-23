@@ -16,6 +16,7 @@ async function getApi(cardsAmount){
 export default function Content({cardsAmount,score, setScore, setBestScore}){
     const [apiData, setApiData] = useState(null)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
+    const [clickedID, setClickedId] = useState(new Set)
 
     const openDialog = () => setIsDialogOpen(true)
     const closeDialog = () => setIsDialogOpen(false)
@@ -24,6 +25,7 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
             const fetchData = async ()=>{
             try{
                 //const data = await getApi(cardsAmount)
+                console.log('idk')
                 console.log(data)
                 setApiData(data)
                 
@@ -40,8 +42,9 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
     const gameOver = ()=>{
         console.log('gameOver')
         openDialog()
-        setBestScore(prevData=> score > prevData ?? score)
+        setBestScore(prevData=> score > prevData ? score : prevData)
         setScore(0)
+        setClickedId(new Set)
 
     }
 
@@ -56,23 +59,23 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
     const playAgain= ()=>{
         closeDialog()
         setScore(0)
-        setApiData(prevData=> prevData)
+        changeOrder()
     }
     return (
         <main >
-            {apiData?(
-                <>
-                    <Dialog isOpen={isDialogOpen} onClose={closeDialog} >
-                        <button onClick={playAgain}>Play Again</button>
-                    </Dialog>
-                    {apiData.map((data)=> 
-                        <Card data={data} key={data.id} gameOver={gameOver} changeOrder={changeOrder}/>)
-                    }
-                </>
-            ):(
-                console.error('Error')
-            )
-            }
+        {apiData?(
+            <>
+                <Dialog isOpen={isDialogOpen} onClose={closeDialog} >
+                    <button onClick={playAgain}>Play Again</button>
+                </Dialog>
+                {apiData.map((data)=> 
+                    <Card key={data.id} data={data} gameOver={gameOver} changeOrder={changeOrder} clicked={clickedID.has(data.id)} setClicked={setClickedId}/>)
+                }
+            </>
+        ):(
+            console.error('Error')
+        )
+        }
         </main>
     )
 

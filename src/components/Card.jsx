@@ -1,14 +1,12 @@
 import {useState} from "react"
 
-export default function Card({data, gameOver, changeOrder}){
-    const [click, setClicked] = useState(null)
+export default function Card({data, gameOver, changeOrder, setClicked, clicked}){
     const handleClick = ()=>{
-        if(click == null){
+        if( !clicked ){
             changeOrder()
-            setClicked(true)
+            setClicked(prevData=> prevData.add(data.id))
         }else{
             gameOver()
-            setClicked(null)
         }
     }
     return (
