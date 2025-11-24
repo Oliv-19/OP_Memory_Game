@@ -12,17 +12,18 @@
 
 body{
   background-color: var(--background);
-  width: 100vw;
   font-family:"Caprasimo", serif;
   color: var(--background);
   letter-spacing: 1px;
-  height: 100vh;
+  overflow-x: hidden;
   
 }
 #root{
   display: flex;
   flex-direction: column;
   gap: 10px ;
+  width: 100vw;
+  height: 100vh;
 
 }
 
@@ -33,6 +34,7 @@ nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
 }
 
 button{
@@ -61,31 +63,64 @@ button:focus{
 }
 
 main{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-auto-rows: 1fr;
-  /* flex-wrap: wrap; */
-  row-gap: clamp(5px,5%, 20px);
+  margin-top: 4%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: clamp(5px,1%, 20px);
+  column-gap: clamp(5px,1.5%, 20px);
   width: 100%;
-  margin-top: 5%;
-  justify-items: center;
+  height: 90%; 
+  align-items: center;
+  justify-content: center;
 }
 
 .card{
   background-color: var(--dark-purple);
   min-width: 150px;
   max-width: 400px;
-  width: 10%;
-  min-height: 200px;
+  height: calc(100%/2.3);
+  width: calc(100%/6);
+  min-height: 150px;
   max-height: 450px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0px 5px 0 5px ;
   box-shadow: var(--box-shadow);
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.card15{
+  height: calc(100%/3.1);
+  width: calc(100%/6.5);
+}
+.card20{
+  width: calc(100%/8);
+  height: calc(100%/3.3);
+}
+
+.card:hover, .card:focus{
+  border: 1px solid var(--background);
+}
+
+.imgWrapper{
+  height: 70%;
+  width: 80%; 
+}
+img{
+  width: 100%;
+  height: 100%;
+}
+.textWrapper{
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 dialog, dialog:focus{
   width: fit-content;
@@ -145,14 +180,14 @@ dialog> div{
 .difficulty_card::after {
   content: "";
   position: absolute;
-  bottom: -40px;          /* places triangle just below the card */
+  bottom: -40px;          
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 62px solid transparent;
   border-right: 62px solid transparent;
-  border-top: 40px solid var(--dark-purple); /* same color as card */
+  border-top: 40px solid var(--dark-purple); 
 }
 .difficulty_card:hover{
   background-color: #bb8fd4;

@@ -1,6 +1,5 @@
-import {useState} from "react"
 
-export default function Card({data, gameOver, changeOrder, setClicked, clicked}){
+export default function Card({data, gameOver, changeOrder, setClicked, clicked, amount}){
     const handleClick = ()=>{
         if( !clicked ){
             changeOrder()
@@ -9,10 +8,16 @@ export default function Card({data, gameOver, changeOrder, setClicked, clicked})
             gameOver()
         }
     }
+    let className= 'card'+amount
     return (
-        <div className="card" onClick={handleClick}>
-            <img src={data.src.small} alt={data.alt}/>
-            <p>{data.photographer}</p>
+        <div className={`card ${className}`} onClick={handleClick}>
+            <div className="imgWrapper">
+                <img src={data.src.small} alt={data.alt}/>
+            </div>
+            <div className="textWrapper">
+                <p>{data.photographer}</p>
+
+            </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Content from './components/Content'
 import Dialog from './components/Dialog'
@@ -8,18 +8,13 @@ export default function App() {
   const [bestScore, setBestScore] = useState(0)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [cardsAmount, setCardsAmount] = useState(10)
-  let diffRef= useRef(null)
 
-    const openDialog = () => setIsDialogOpen(true)
-    const closeDialog = () => setIsDialogOpen(false)
-    const changeDifficulty= (number, e)=> {
-      
-      diffRef.current.classList.remove('selected')
-      setCardsAmount(number)
-      closeDialog()
-      diffRef.current = e.target
-      diffRef.current.classList.add('selected')
-    }
+  const openDialog = () => setIsDialogOpen(true)
+  const closeDialog = () => setIsDialogOpen(false)
+  const changeDifficulty= (number)=> {
+    setCardsAmount(number)
+    closeDialog()
+  }
 
   return (
     <>
@@ -30,9 +25,9 @@ export default function App() {
         <button type='button' onClick={openDialog}> Difficulty</button>
       </nav>
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} id='difficulty'>
-        <div ref={diffRef} className='difficulty_card selected' type='button' onClick={(e)=> changeDifficulty(10, e)}>Easy <br></br> 10</div>
-        <div className='difficulty_card' type='button' onClick={(e)=> changeDifficulty(15, e)}>Medium <br></br> 15</div>
-        <div className='difficulty_card' type='button' onClick={(e)=> changeDifficulty(20, e)}>Hard <br></br> 20</div>
+        <div className={`difficulty_card ${cardsAmount === 10 && "selected"}`} type='button' onClick={()=> changeDifficulty(10)}>Easy <br></br> 10</div>
+        <div className={`difficulty_card ${cardsAmount === 15 && "selected"}`} type='button' onClick={()=> changeDifficulty(15)}>Medium <br></br> 15</div>
+        <div className={`difficulty_card ${cardsAmount === 20 && "selected"}`} type='button' onClick={()=> changeDifficulty(20)}>Hard <br></br> 20</div>
       </Dialog>
       <Content cardsAmount={cardsAmount} score={score} setScore={setScore}  setBestScore={setBestScore} />
     </>
