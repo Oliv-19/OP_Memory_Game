@@ -40,7 +40,7 @@ button{
   font-family:"Caprasimo", serif;
   background-color: var(--dark-purple);
   padding: 10px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 15px;
   color: var(--background);
   letter-spacing: 1px;
@@ -112,9 +112,67 @@ dialog::backdrop{
 dialog> div{
   width: 100%;
   height: 100%;
+} 
+.playAgain{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+.difficulty{
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.difficulty_card{
+  height: 40%;
+  width: 25%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 0;
+  position: relative; 
+  box-shadow: none;
+  background-color: var(--dark-purple);
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.difficulty_card::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;          /* places triangle just below the card */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 62px solid transparent;
+  border-right: 62px solid transparent;
+  border-top: 40px solid var(--dark-purple); /* same color as card */
+}
+.difficulty_card:hover{
+  background-color: #bb8fd4;
+  box-shadow: 4px 4px 7px #000000a8;
+  border: 1px solid var(--background);
+}
+.difficulty_card:hover::after{
+  border-top: 40px solid #bb8fd4;
+}
+.difficulty_card:focus, .difficulty_card:focus:after{
+  background-color: #8c67a1;
+  box-shadow: 4px 4px 7px #000000a8;
+  border: 1px solid var(--background);
+  outline: none;
 
-} 
+}
+.selected{
+  background-color: #bb8fd4;
+  border: 1px solid var(--background);
+}
+.selected::after{
+  border-top: 40px solid #bb8fd4;
+}

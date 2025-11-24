@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef} from "react"
 import Card from "./Card"
-import data from "./data";
+// import data from "./data";
 import Dialog from "./Dialog";
 async function getApi(cardsAmount){
         const apiKey = 'Xj0403G2dn9CFvk7n0Ddz9AUGqfixqxUI89bUrk6Q39kIsJSVFmV0PHU'
@@ -17,16 +17,12 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
     const [apiData, setApiData] = useState(null)
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [clickedID, setClickedId] = useState(new Set)
-
     const openDialog = () => setIsDialogOpen(true)
     const closeDialog = () => setIsDialogOpen(false)
     useEffect(() => {
-        if(apiData == null){
             const fetchData = async ()=>{
             try{
-                //const data = await getApi(cardsAmount)
-                console.log('idk')
-                console.log(data)
+                const data = await getApi(cardsAmount)
                 setApiData(data)
                 
             }catch(error){
@@ -35,8 +31,6 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
 
             }
             fetchData()
-        }
-       
     },[cardsAmount])
 
     const gameOver = ()=>{
@@ -65,8 +59,8 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
         <main >
         {apiData?(
             <>
-                <Dialog isOpen={isDialogOpen} onClose={closeDialog}  >
-                    <h1>You Lost!</h1>
+                <Dialog isOpen={isDialogOpen} onClose={closeDialog} id='playAgain'>
+                    <h1>Game Lost!</h1>
                     <button onClick={playAgain}>Play Again</button>
                 </Dialog>
                 {apiData.map((data)=> 

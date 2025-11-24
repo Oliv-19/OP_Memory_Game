@@ -1,6 +1,6 @@
 import { useRef, useEffect} from "react";
 
-export default function Dialog({children, isOpen, onClose}){
+export default function Dialog({children, isOpen, onClose, id}){
     let dialogRef = useRef(null)
 
     useEffect(() => {
@@ -14,10 +14,9 @@ export default function Dialog({children, isOpen, onClose}){
     }, [isOpen]);
 
     return (
-        <dialog ref={dialogRef} onCancel={onClose}>
-            <div>
+        <dialog ref={dialogRef} onCancel={onClose}  >
+            <div className={id}>
                 {children}
-
             </div>
         </dialog>
     )
