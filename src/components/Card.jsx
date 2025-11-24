@@ -1,9 +1,11 @@
 
-export default function Card({data, gameOver, changeOrder, setClicked, clicked, amount}){
+export default function Card({data, gameOver,setScore, changeOrder, setClicked, clicked, amount, checkWin}){
     const handleClick = ()=>{
-        if( !clicked ){
+        if( !clicked){
             changeOrder()
             setClicked(prevData=> prevData.add(data.id))
+            setScore(prevData=> prevData+1)  
+            checkWin()
         }else{
             gameOver()
         }
