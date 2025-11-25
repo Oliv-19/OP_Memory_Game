@@ -54,7 +54,7 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
         if(score+1 == cardsAmount){
             console.log('win')
             setIsDialogOpen({isOpen:true, message: 'You Win'})
-            setBestScore(prevData=> score > prevData ? score+1 : prevData)
+            setBestScore(prevData=> score > prevData ? storage.saveBestScore(score+1) : storage.getBestScore())
         }
 
     }
@@ -62,7 +62,7 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
         console.log('gameOver')
         
         setIsDialogOpen({isOpen:true, message:'Game Over'})
-        setBestScore(prevData=> score > prevData ? score : prevData)
+        setBestScore(prevData=> score > prevData ? storage.saveBestScore(score)  : storage.getBestScore())
     }
 
     const changeOrder = ()=>{

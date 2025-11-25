@@ -1,6 +1,4 @@
 
-//const localStorage = window.localStorage
-
 const storage={
     saveData(data){
         localStorage.setItem('data', JSON.stringify(data))
@@ -9,11 +7,10 @@ const storage={
         return JSON.parse(localStorage.getItem(key))
     },
     saveBestScore(bestScore){
-        console.log(bestScore)
-        localStorage.setItem('bestScore', JSON.stringify(bestScore))
+        localStorage.setItem('bestScore', bestScore)
     },
     getBestScore(){
-        return JSON.parse(localStorage.getItem('bestScore'))
+        return localStorage.getItem('bestScore')
     },
     deleteData(dataId){
         localStorage.removeItem(dataId)

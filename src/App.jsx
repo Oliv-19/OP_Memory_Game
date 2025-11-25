@@ -15,7 +15,7 @@ export default function App() {
     setCardsAmount(number)
     closeDialog()
   }
-  storage.saveBestScore(bestScore)
+  //storage.saveBestScore(bestScore)
   return (
     <>
       <nav>
