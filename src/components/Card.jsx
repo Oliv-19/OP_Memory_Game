@@ -14,7 +14,7 @@ export default function Card({data, gameOver,setScore, changeOrder, setClicked, 
     return (
         <div className={`card ${className}`} onClick={handleClick} onKeyUp={(e)=>{if(e.key=='Enter') handleClick()}} title={`Photo by: ${data.photographer}`} tabIndex='0'>
             <div className="imgWrapper">
-                <img src={data.src.small} alt={data.alt}/>
+                <img src={data.src.medium} alt={data.alt}/>
             </div>
             <div className="textWrapper" >
                 <p>{data.photographer}</p>

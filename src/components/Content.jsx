@@ -21,6 +21,7 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
     const [isDialogOpen, setIsDialogOpen] = useState({isOpen:false, message: 'Game Over'})
     const [clickedID, setClickedId] = useState(new Set)
     useEffect(() => {
+        setIsLoading(true)
         if(storage.isEmpty() || storage.dataLength() != cardsAmount){
             const fetchData = async ()=>{
                 try{
