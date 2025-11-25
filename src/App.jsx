@@ -15,13 +15,12 @@ export default function App() {
     setCardsAmount(number)
     closeDialog()
   }
-  //storage.saveBestScore(bestScore)
   return (
     <>
       <nav>
         <h1>Memory Game</h1>
         <h3>Score: {score} </h3>
-        <h3>Best score: {storage.getBestScore()} </h3>
+        <h3>Best score: {storage.getBestScore()?? bestScore} </h3>
         <button type='button' onClick={openDialog}> Difficulty</button>
       </nav>
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} id='difficulty'>
