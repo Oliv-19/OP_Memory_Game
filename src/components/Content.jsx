@@ -2,6 +2,8 @@ import { useEffect, useState, useRef} from "react"
 import Card from "./Card"
 // import data from "./data";
 import Dialog from "./Dialog";
+import storage from "./Storage";
+
 async function getApi(cardsAmount){
         const apiKey = 'Xj0403G2dn9CFvk7n0Ddz9AUGqfixqxUI89bUrk6Q39kIsJSVFmV0PHU'
         const response = await fetch(`https://api.pexels.com/v1/search?query=a flower in the nature&per_page=${cardsAmount}&orientation=square`, {
@@ -17,21 +19,29 @@ export default function Content({cardsAmount,score, setScore, setBestScore}){
     const [isLoading, setIsLoading] = useState(true)
     const [apiData, setApiData] = useState(null)
     const [isDialogOpen, setIsDialogOpen] = useState({isOpen:false, message: 'Game Over'})
-    // const [message, setMessage] = useState('Game Over')
     const [clickedID, setClickedId] = useState(new Set)
     useEffect(() => {
-        const fetchData = async ()=>{
-            try{
-                const data = await getApi(cardsAmount)
-                setApiData(data)
-                setIsLoading(false)
+        if(storage.isEmpty() || storage.dataLength() != cardsAmount){
+            const fetchData = async ()=>{
+                try{
+                    console.log('fetching')
+                    const data = await getApi(cardsAmount)
+                    storage.saveData(data)
+                    setApiData(storage.getData('data'))
+                    setIsLoading(false)
+                    
+                }catch(error){
+                    console.error("Error fetching data:", error)
+                }
                 
-            }catch(error){
-                console.error("Error fetching data:", error)
             }
-
+            fetchData()
+        }else{
+            console.log('local')
+            setApiData(storage.getData('data'))
+            setIsLoading(false)
         }
-        fetchData()
+        
     },[cardsAmount])
     if(isLoading){
         return (

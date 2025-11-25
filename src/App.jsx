@@ -2,26 +2,26 @@ import { useState } from 'react'
 import './App.css'
 import Content from './components/Content'
 import Dialog from './components/Dialog'
+import storage from "./components/Storage";
 
 export default function App() {
   const [score, setScore] = useState(0)
   const [bestScore, setBestScore] = useState(0)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [cardsAmount, setCardsAmount] = useState(10)
-
   const openDialog = () => setIsDialogOpen(true)
   const closeDialog = () => setIsDialogOpen(false)
   const changeDifficulty= (number)=> {
     setCardsAmount(number)
     closeDialog()
   }
-
+  storage.saveBestScore(bestScore)
   return (
     <>
       <nav>
         <h1>Memory Game</h1>
         <h3>Score: {score} </h3>
-        <h3>Best score: {bestScore} </h3>
+        <h3>Best score: {storage.getBestScore()} </h3>
         <button type='button' onClick={openDialog}> Difficulty</button>
       </nav>
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} id='difficulty'>

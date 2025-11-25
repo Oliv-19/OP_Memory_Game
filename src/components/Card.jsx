@@ -12,11 +12,11 @@ export default function Card({data, gameOver,setScore, changeOrder, setClicked, 
     }
     let className= 'card'+amount
     return (
-        <div className={`card ${className}`} onClick={handleClick}>
+        <div className={`card ${className}`} onClick={handleClick} title={`Photo by: ${data.photographer}`}>
             <div className="imgWrapper">
                 <img src={data.src.small} alt={data.alt}/>
             </div>
-            <div className="textWrapper">
+            <div className="textWrapper" >
                 <p>{data.photographer}</p>
 
             </div>
