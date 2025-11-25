@@ -54,7 +54,7 @@ button:hover{
   box-shadow: 4px 4px 7px #000000a8;
   border: 1px solid var(--background);
 }
-button:focus{
+button:focus, .card:focus{
   background-color: #8c67a1;
   box-shadow: 4px 4px 7px #000000a8;
   border: 1px solid var(--background);
