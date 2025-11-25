@@ -19,7 +19,7 @@ const storage={
         localStorage.clear()
     },
     dataLength(){
-        return this.getData('data').length
+        return this.getData('data')?.length 
     },
     isEmpty(){
         return this.dataLength() == 0
